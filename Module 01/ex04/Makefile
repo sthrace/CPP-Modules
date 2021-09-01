@@ -1,6 +1,6 @@
 NAME	= replace
-SRCS	= main.cpp
-# HEADER	= Zombie.hpp
+SRCS	= main.cpp replace.cpp
+HEADER	= header.hpp
 OBJS	= $(SRCS:.cpp=.o)
 CC		= clang++
 FLAGS	= -Wall -Werror -Wextra -std=c++98
