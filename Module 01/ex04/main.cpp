@@ -1,8 +1,10 @@
 #include "header.hpp"
 
-void	replace(std::ifstream *fsRD, std::ofstream *fdWR, std::string s1, std::string s2)
+void	replace(std::ifstream *fsRD, std::ofstream *fdWR, char **argv)
 {
 	std::stringstream strStream;
+	std::string		s1 = argv[2];
+	std::string		s2 = argv[3];
 	int	pos = 0, found;
 
 	strStream << fsRD->rdbuf();
@@ -21,8 +23,9 @@ void	replace(std::ifstream *fsRD, std::ofstream *fdWR, std::string s1, std::stri
 	*fdWR << content << std::endl;
 }
 
-int	open(std::string file, std::string s1, std::string s2)
+int	open(char **argv)
 {
+	std::string     file = argv[1];
 	std::ifstream	fsRD(file);
 	if (!fsRD)
 	{
@@ -37,7 +40,7 @@ int	open(std::string file, std::string s1, std::string s2)
 		std::cout << BOLDWHITE << "<" << file << ">" << std::endl;
 		return (1);
 	}
-	replace(&fsRD, &fsWR, s1, s2);
+	replace(&fsRD, &fsWR, argv);
 	fsRD.close();
 	fsWR.close();
 	return (0);
@@ -45,19 +48,17 @@ int	open(std::string file, std::string s1, std::string s2)
 
 int	main(int argc, char *argv[])
 {
-	std::string		file;
-	std::string		s1;
-	std::string		s2;
-
 	if (argc != 4)
 	{
 		std::cout << BOLDRED << "Invalid number of parameters" << std::endl;
 		return (1);
 	}
-	file = argv[1];
-	s1 = argv[2];
-	s2 = argv[3];
-	if (open(file, s1, s2))
+	if (strlen(argv[2]) == 0)
+	{
+		std::cout << BOLDRED << "String to be replaced can not be empty" << std::endl;
+		return (1);
+	}
+	if (open(argv))
 		return (1);
 	return (0);
 }
