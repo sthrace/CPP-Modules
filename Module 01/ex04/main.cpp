@@ -20,7 +20,7 @@ void	replace(std::ifstream *fsRD, std::ofstream *fdWR, char **argv)
 		else
 			break ;
 	}
-	*fdWR << content << std::endl;
+	*fdWR << content;
 }
 
 int	open(char **argv)
@@ -38,6 +38,7 @@ int	open(char **argv)
 	{
 		std::cout << BOLDRED << "Can not open ";
 		std::cout << BOLDWHITE << "<" << file << ">" << std::endl;
+		fsRD.close();
 		return (1);
 	}
 	replace(&fsRD, &fsWR, argv);
