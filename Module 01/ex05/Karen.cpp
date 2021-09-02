@@ -3,10 +3,16 @@
 void Karen::complain(std::string level)
 {
 	void (Karen::*levels[4])() = {&Karen::debug, &Karen::info, &Karen::warning, &Karen::error};
-	switch(std::stoi(level))
+
+	int	key = 0;
+	key = level.compare("1") == 0 ? 1 : key;
+	key = level.compare("2") == 0 ? 2 : key;
+	key = level.compare("3") == 0 ? 3 : key;
+	key = level.compare("4") == 0 ? 4 : key;
+	switch(key)
 	{
 		case 1 ... 4:
-			(this->*levels[std::stoi(level) - 1])();
+			(this->*levels[key - 1])();
 			break ;
 		default:
 			std::cout << BOLDRED;
@@ -14,7 +20,6 @@ void Karen::complain(std::string level)
 			std::cout << DEFAULT << std::endl;
 			break ;
 	}
-
 }
 
 void Karen::debug(void)
