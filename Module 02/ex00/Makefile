@@ -1,4 +1,4 @@
-NAME	= OrthodoxClass
+NAME	= Fixed
 SRCS	= main.cpp Fixed.cpp
 HEADER	= Fixed.hpp
 OBJS	= $(SRCS:.cpp=.o)
