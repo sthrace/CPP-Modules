@@ -36,3 +36,13 @@ void	Fixed::setRawBits(int const value)
 {
 	_value = value;
 }
+
+float	Fixed::toFloat(void) const
+{
+	return (static_cast<float>(_value));
+}
+
+int		Fixed::toInt(void) const
+{
+	return (static_cast<int>(_value));
+}
