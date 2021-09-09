@@ -2,10 +2,12 @@
 #ifndef FIXED_HPP
 # define FIXED_HPP
 
+# include <iostream>
+
 class Fixed
 {
-	int					_value;
-	static const int	_bits = 8;
+	int					_fixedPointValue;
+	static const int	_fractionBits = 8;
 
 public:
 	Fixed(void);
@@ -15,7 +17,7 @@ public:
 	Fixed	&operator=(Fixed const &source);
 
 	int			getRawBits(void) const;
-	void		setRawBits(int const value);
+	void		setRawBits(int const raw);
 };
 
 #endif
