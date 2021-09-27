@@ -2,33 +2,27 @@
 
 Fixed::Fixed(void) : _fixedPointValue(0)
 {
-	// std::cout << "Default constructor called" << std::endl;
 }
 
 Fixed::Fixed(const Fixed &source)
 {
-	// std::cout << "Copy constructor called" << std::endl;
 	*this = source;
 }
 
 Fixed::Fixed(int const x) : _fixedPointValue(x << _fractionBits)
 {
-	// std::cout << "Int constructor called" << std::endl;
 }
 
 Fixed::Fixed(float const x) : _fixedPointValue(roundf(x * (float)(1 << _fractionBits)))
 {
-	// std::cout << "Float constructor called" << std::endl;
 }
 
 Fixed::~Fixed(void)
 {
-	// std::cout << "Destructor called" << std::endl;
 }
 
 Fixed &Fixed::operator=(const Fixed &source)
 {
-	// std::cout << "Assignation operator called" << std::endl;
 	_fixedPointValue = source._fixedPointValue;
 	return (*this);
 }
@@ -41,13 +35,11 @@ std::ostream &operator<<(std::ostream &output, const Fixed &source)
 
 int	Fixed::getRawBits(void) const
 {
-	// std::cout << "getRawBits member function called" << std::endl;
 	return (_fixedPointValue);
 }
 
 void	Fixed::setRawBits(int const raw)
 {
-	// std::cout << "setRawBits member function called" << std::endl;
 	_fixedPointValue = raw;
 }
 
@@ -109,20 +101,65 @@ Fixed		Fixed::operator-(Fixed const &source)
 
 Fixed		Fixed::operator*(Fixed const &source)
 {
-	Fixed	res(*this);
-	int		value1, value2, mult;
+	Fixed	res;
+	int		ress;
 
-	mult = (((getRawBits() >> _fractionBits) * (source.getRawBits() >> _fractionBits)) >> 0);
-	res.setRawBits(mult);
+	res.setRawBits((long long)getRawBits() * (long long)source.getRawBits() >> _fractionBits);
 	return (res);
 }
 
 Fixed		Fixed::operator/(Fixed const &source)
 {
-	Fixed	res(*this);
-	int		value1, value2, mult;
+	Fixed	res;
 
-	mult = (((int64_t)getRawBits() >> _fractionBits / (int64_t)source.getRawBits() >> _fractionBits) << _fractionBits);
-	res.setRawBits(mult);
+	res.setRawBits(getRawBits() * (1 << _fractionBits) / source.getRawBits());
 	return (res);
+}
+
+Fixed		Fixed::operator++(int nb)
+{
+	Fixed temp(*this);
+
+	_fixedPointValue++;
+	return(temp);
+}
+
+Fixed		Fixed::operator--(int nb)
+{
+	Fixed temp(*this);
+
+	_fixedPointValue--;
+	return(temp);
+}
+
+Fixed		Fixed::operator++()
+{
+	_fixedPointValue++;
+	return (*this);
+}
+
+Fixed		Fixed::operator--()
+{
+	_fixedPointValue--;
+	return (*this);
+}
+
+Fixed	&Fixed::min(Fixed &first, Fixed &second)
+{
+	return (first < second ? first : second);
+}
+
+Fixed	&Fixed::max(Fixed &first, Fixed &second)
+{
+	return (first > second ? first : second);
+}
+
+Fixed	const &Fixed::min(Fixed const &first, Fixed const &second)
+{
+	return (first < second ? first : second);
+}
+
+Fixed	const &Fixed::max(Fixed const &first, Fixed const &second)
+{
+	return (first > second ? first : second);
 }

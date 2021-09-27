@@ -5,9 +5,6 @@
 # include <cmath>
 # include <iostream>
 
-// _fixedPointValue >>= 1; divide _fPV by 2^1;
-// _fixedPointValue <<= 1; multiply _fPV by 2^1;
-
 class Fixed
 {
 	int					_fixedPointValue;
@@ -34,10 +31,10 @@ public:
 	Fixed	operator*(Fixed const &source);
 	Fixed	operator/(Fixed const &source);
 
-	int		&operator++(int);
-	int		&operator--(int);
-	int		&operator++();
-	int		&operator--();
+	Fixed	operator++(int nb);
+	Fixed	operator--(int nb);
+	Fixed	operator++();
+	Fixed	operator--();
 
 	int			getRawBits(void) const;
 	void		setRawBits(int const raw);
@@ -45,16 +42,14 @@ public:
 	float		toFloat(void) const;
 	int			toInt(void) const;
 
-	static int	&min(int &first, int &second);
-	static int	&max(int &first, int &second);
+	static Fixed	&min(Fixed &first, Fixed &second);
+	static Fixed	&max(Fixed &first, Fixed &second);
+	static Fixed	const &min(Fixed const &first, Fixed const &second);
+	static Fixed	const &max(Fixed const &first, Fixed const &second);
 
 	int	getValue(void) const;
 };
 
 std::ostream	&operator<<(std::ostream &output, Fixed const &source);
-
-
-
-
 
 #endif
