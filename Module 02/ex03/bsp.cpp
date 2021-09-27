@@ -25,8 +25,12 @@ int	main()
 	Point a(0, 0);
 	Point b(1, 0);
 	Point c(0, 1);
-	Point point(0.01, 0.01);
+	Point point1(0.01, 0.01);
+	Point point2(-0.01, 0.01);
+	Point point3(0, 0);
 
-	std::cout << bsp(a, b, c, point) << std::endl;
+	std::cout << bsp(a, b, c, point1) << std::endl;
+	std::cout << bsp(a, b, c, point2) << std::endl;
+	std::cout << bsp(a, b, c, point3) << std::endl;
 	return (0);
 }

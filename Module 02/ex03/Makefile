@@ -1,5 +1,5 @@
 NAME	= BSP
-SRCS	= main.cpp Fixed.cpp Point.cpp bsp.cpp
+SRCS	= Fixed.cpp Point.cpp bsp.cpp
 HEADER	= Fixed.hpp Point.hpp
 OBJS	= $(SRCS:.cpp=.o)
 CC		= clang++
