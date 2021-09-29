@@ -1,5 +1,5 @@
 NAME	= replace
-SRCS	= main.cpp
+SRCS	= main.cpp replace.cpp
 HEADER	= header.hpp
 OBJS	= $(SRCS:.cpp=.o)
 CC		= clang++
