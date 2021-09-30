@@ -4,7 +4,7 @@ int	main()
 {
 	Karen	test;
 
-	test.complain("1");
+	test.complain("DEBUG");
 	test.complain("2");
 	test.complain("3");
 	test.complain("4");
