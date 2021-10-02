@@ -5,6 +5,8 @@
 # include "header.hpp"
 # include "ICharacter.hpp"
 
+class ICharacter;
+
 class AMateria
 {
 	protected:

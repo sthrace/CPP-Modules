@@ -28,15 +28,12 @@ void	MateriaSource::learnMateria(AMateria* m){
 }
 
 AMateria* MateriaSource::createMateria(std::string const &type){
+	assert(!type.compare("ice") || !type.compare("cure"));
 	for (int i = 0; i < 4; i++){
-		if (library[i]->getType() == type){
-			AMateria *copy;
-			if (library[i]->getType() == "ice")
-				copy = new Ice();
-			else
-				copy = new Cure();
-			return(copy);
-		}
+		if (!library[i])
+			break ;
+		if (library[i]->getType() == type)
+			return library[i]->clone();
 	}
 	return (0);
 }

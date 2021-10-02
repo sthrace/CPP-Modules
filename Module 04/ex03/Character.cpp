@@ -16,7 +16,10 @@ Character::Character(const Character &source){
 		inventory[i] = source.inventory[i];
 }
 
-Character::~Character() {}
+Character::~Character() {
+	for (int i = 0; i < 4; i++)
+		inventory[i] = NULL;
+}
 
 Character	&Character::operator=(const Character &source){
 	m_name = source.m_name;
@@ -25,7 +28,7 @@ Character	&Character::operator=(const Character &source){
 	return *this;
 }
 
-std::string const	Character::getName(void) const{ return m_name; }
+std::string const	&Character::getName(void) const{ return m_name; }
 
 void	Character::equip(AMateria *m){
 	for (int i = 0; i < 4; i++){
@@ -36,8 +39,9 @@ void	Character::equip(AMateria *m){
 	}
 }
 
-void	Character::unequip(int idx){ inventory[idx] = NULL }
+void	Character::unequip(int idx){ inventory[idx] = NULL; }
 
 void	Character::use(int idx, ICharacter &target){
-
+	assert(idx >= 0 && idx <= 4 && inventory[idx]);
+	inventory[idx]->use(target);
 }

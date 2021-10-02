@@ -11,11 +11,11 @@ AMateria::AMateria(const AMateria &source){
 AMateria::~AMateria(){}
 
 AMateria	&AMateria::operator=(const AMateria &source){
-	*this = source;
+	type = source.type;
 	return *this;
 }
 
 std::string	const &AMateria::getType(void) const {return type;}
 
-void	AMateria::use(ICharacter &target) {}
+void	AMateria::use(ICharacter &) {}
 

@@ -7,7 +7,6 @@
 
 class Cure : public AMateria
 {
-	private:
 	public:
 		Cure(void);
 		Cure(const Cure &source);

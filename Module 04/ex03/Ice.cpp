@@ -11,6 +11,8 @@ Ice::Ice(const Ice &source){
 Ice::~Ice(){}
 
 Ice	&Ice::operator=(const Ice &source){
+	if (this == &source)
+		return *this;
 	type = source.type;
 	return *this;
 }
@@ -21,7 +23,7 @@ AMateria*	Ice::clone() const{
 }
 
 void	Ice::use(ICharacter& target){
-	std::cout << BOLDBLUE << "* shoots an Ice bolt at " << target << " *\n" << DEFAULT;
+	std::cout << BOLDBLUE << "* shoots an Ice bolt at " << target.getName() << " *\n" << DEFAULT;
 }
 
 

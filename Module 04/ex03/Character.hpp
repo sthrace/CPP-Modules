@@ -4,7 +4,7 @@
 
 # include "ICharacter.hpp"
 
-class Character
+class Character : public ICharacter
 {
 	private:
 		AMateria*	inventory[4];
