@@ -2,7 +2,7 @@
 
 int	main()
 {
-	Bureaucrat one();
+	Bureaucrat one;
 	Bureaucrat two("Alf", 150);
 	Bureaucrat three("Fin", 1);
 	Bureaucrat four("Arch", 0);

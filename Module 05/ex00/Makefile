@@ -10,7 +10,9 @@ RM		= rm -rf
 
 $(OBJ_F)%.o: %.cpp
 			@mkdir -p $(OBJ_F)
-			$(CC) -c $(FLAGS) -o $@ $<
+			@printf  "\r%s\033[34m[$<]\033[0m\n" "Compiling: "
+			@$(CC) -c $(FLAGS) -o $@ $<
+			@printf "\033[A\033[2K"
 
 all:	$(NAME)
 
@@ -19,9 +21,11 @@ $(NAME):	$(HEADER) $(OBJS)
 
 clean:
 			@$(RM) $(OBJ_F)
+			@printf  "%s\033[32m[✔]\033[0m\n" "$@: "
 
 fclean:		clean
 			@$(RM) $(NAME)
+			@printf  "%s\033[32m[✔]\033[0m\n" "$@: "
 
 re:			fclean all
 

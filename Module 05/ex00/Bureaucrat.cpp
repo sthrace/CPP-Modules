@@ -9,11 +9,14 @@ Bureaucrat::Bureaucrat(const Bureaucrat &source) { *this = source; }
 Bureaucrat::~Bureaucrat() {}
 
 Bureaucrat	&Bureaucrat::operator=(const Bureaucrat &source) {
-	*this = source;
-	return (*this);
+	if (this == &source)
+		return *this;
+	_name = source._name;
+	_grade = source._grade;
+	return *this;
 }
 
-std::string	Bureaucrat::getName(void) const { return _name; }
+std::string	const &Bureaucrat::getName(void) const { return _name; }
 int			Bureaucrat::getGrade(void) const { return _grade; }
 void		Bureaucrat::gradeUp(void) { _grade--; }
 void		Bureaucrat::gradeDown(void) { _grade++; }
