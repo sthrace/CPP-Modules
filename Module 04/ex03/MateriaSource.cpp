@@ -10,7 +10,11 @@ MateriaSource::MateriaSource(const MateriaSource &source){
 		library[i] = source.library[i];
 }
 
-MateriaSource::~MateriaSource(){}
+MateriaSource::~MateriaSource(){
+	for (int i = 0; i < 4; i++)
+		if (library[i])
+			delete library[i];
+}
 
 MateriaSource &MateriaSource::operator=(const MateriaSource &source){
 	for (int i = 0; i < 4; i++)

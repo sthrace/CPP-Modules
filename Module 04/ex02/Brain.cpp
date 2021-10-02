@@ -18,6 +18,7 @@ Brain::~Brain()
 
 Brain &Brain::operator=(const Brain &source)
 {
-	*this = source;
+	for (int i = 0; i < 100; i++)
+		ideas[i] = source.ideas[i];
 	return (*this);
 }

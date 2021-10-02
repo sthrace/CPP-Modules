@@ -9,27 +9,26 @@ Dog::Dog(void)
 
 Dog::Dog(const Dog &source)
 {
-	brain = new Brain();
-	*brain = *source.brain;
+	brain = new Brain(*source.brain);
 	type = source.type;
 	std::cout << BOLDCYAN << "Dog has been cloned\n" << DEFAULT;
 }
 
 Dog::~Dog(void)
 {
-	delete brain;
+	if (brain)
+		delete brain;
 	std::cout <<BOLDRED << "Dog died\n" << DEFAULT;
 }
 
 Dog &Dog::operator=(const Dog &source)
 {
-	if (brain)
-		delete brain;
-	brain = new Brain();
+	if (this == &source)
+		return *this;
 	*brain = *source.brain;
 	type = source.type;
-	return (*this);
 	std::cout << BOLDCYAN << "Dog has been copied\n" << DEFAULT;
+	return (*this);
 }
 
 void	Dog::makeSound(void) const
