@@ -21,7 +21,9 @@ Bureaucrat	&Bureaucrat::operator=(const Bureaucrat &source) {
 }
 
 std::string	const &Bureaucrat::getName(void) const { return _name; }
+
 int			Bureaucrat::getGrade(void) const { return _grade; }
+
 void		Bureaucrat::gradeUp(void) {
 	_grade--;
 	if (_grade < 1)
@@ -34,12 +36,37 @@ void		Bureaucrat::gradeDown(void) {
 		throw Bureaucrat::GradeTooLowException();
 }
 
+void		Bureaucrat::signForm(Form &source){
+	if (source.getSign() == true){
+		std::cout << BOLDRED << _name << " cannot sign " << source.getName() << " because ";
+		throw Bureaucrat::FormAlreadySigned();
+	}
+	std::cout << BOLDMAGENTA << _name << " signs " << source.getName() << DEFAULT << std::endl;
+	source.setSign();
+}
+
+void		Bureaucrat::executeForm(const Form & source) const {
+	if (source.getReqExec() < _grade) {
+		std::cout << BOLDRED << _name << " cannot sign " << source.getName() << " because ";
+		throw Bureaucrat::ExecTooLowException();
+	}
+	source.finalize(*this);
+}
+
 const char *Bureaucrat::GradeTooHighException::what() const throw() {
-	return "Grade is too High";
+	return "his Grade is too High";
 }
 
 const char *Bureaucrat::GradeTooLowException::what() const throw() {
-	return "Grade is too Low";
+	return "his Grade is too Low";
+}
+
+const char *Bureaucrat::ExecTooLowException::what() const throw() {
+	return "his Execution Grade is too Low";
+}
+
+const char *Bureaucrat::FormAlreadySigned::what() const throw() {
+	return "it is already signed";
 }
 
 std::ostream &operator<<(std::ostream &output, const Bureaucrat &source)

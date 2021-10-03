@@ -4,6 +4,7 @@
 
 # include <iostream>
 # include <string>
+# include "Form.hpp"
 
 # define DEFAULT		"\033[0m"
 # define BOLDRED		"\033[1m\033[31m"
@@ -13,6 +14,8 @@
 # define BOLDMAGENTA	"\033[1m\033[35m"
 # define BOLDCYAN		"\033[1m\033[36m"
 # define BOLDWHITE		"\033[1m\033[37m"
+
+class Form;
 
 class Bureaucrat
 {
@@ -31,10 +34,16 @@ class Bureaucrat
 		int			getGrade(void) const;
 		void		gradeUp(void);
 		void		gradeDown(void);
+		void		signForm(Form &source);
+		void 		executeForm(const Form & source) const;
 
 		class GradeTooHighException : public std::exception	{
 			const char* what() const throw(); };
 		class GradeTooLowException : public std::exception	{
+			const char* what() const throw(); };
+		class ExecTooLowException : public std::exception	{
+			const char* what() const throw(); };
+		class FormAlreadySigned : public std::exception	{
 			const char* what() const throw(); };
 
 };
