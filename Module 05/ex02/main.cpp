@@ -16,11 +16,9 @@ int	main()
 		Form* pres = new Presidential("Pres");
 		std::cout << one << std::endl;
 		shrub->beSigned(one);
-		// form.beSigned(one);
-		// form->beSigned(two);
 		shrub->execute(one);
 		robo->beSigned(one);
-		// robo->execute(two);
+		robo->execute(two);
 		pres->beSigned(three);
 		pres->execute(three);
 		pres->execute(one);
